@@ -11,7 +11,7 @@ router.get("/", (req, res) => {
   });
 });
 
-router.post("/login", authCheck, userLogin);
+router.post("/login", userLogin);
 router.post("/signup", userSignup);
 
 module.exports = router;
