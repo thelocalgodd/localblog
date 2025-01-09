@@ -1,4 +1,5 @@
 const jwt = require("jsonwebtoken");
+const bcrypt = require("bcrypt");
 const User = require("../models/userModel");
 
 const userLogin = async (req, res) => {
@@ -23,7 +24,7 @@ const userLogin = async (req, res) => {
     const token = jwt.sign(
       { userId: user._id, username: user.username },
       process.env.JWT_SECRET,
-      { expiresIn: "24h" }
+      { expiresIn: "12h" }
     );
 
     // Set cookie
@@ -103,4 +104,14 @@ const userSignup = async (req, res) => {
   }
 };
 
-module.exports = { userLogin, userSignup };
+const logout = async (req, res) => {
+  try {
+    res.clearCookie("token");
+    return res.status(200).json({ message: "Logged out successfully" });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ message: "Server error" });
+  }
+};
+
+module.exports = { userLogin, userSignup, logout };
