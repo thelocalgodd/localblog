@@ -11,7 +11,7 @@ const authCheck = require("../middleware/authCheck");
 
 router.get("/", (req, res) => {
   res.json({
-    message: "Auth Route",
+    message: "Auth Route..",
   });
 });
 
