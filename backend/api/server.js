@@ -41,6 +41,7 @@ app.use("/api/posts", postRoute);
 
 // Start the localblogg Server
 const PORT = process.env.PORT || 5000;
+
 app.listen(PORT, () => {
   console.log(`localblogg is running on http://localhost:${PORT}`);
 });
