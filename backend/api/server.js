@@ -1,7 +1,8 @@
 const express = require("express"),
   app = express(),
   cors = require("cors"),
-  cookieParser = require("cookie-parser");
+  cookieParser = require("cookie-parser"),
+  path = require("path");
 
 require("dotenv").config();
 
@@ -28,6 +29,11 @@ app.use(function (req, res, next) {
 const authRoute = require("../routes/authRoute");
 const userRoute = require("../routes/userRoute");
 const postRoute = require("../routes/postRoute");
+
+// Serve API documentation
+app.get("/api/docs", (req, res) => {
+  res.sendFile(path.join(__dirname, "/docs.html"));
+});
 
 app.get("/", (req, res) => {
   res.json({
